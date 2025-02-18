@@ -37,10 +37,12 @@ void Array_Destroy(int* values){
     free(values);
 }
 void Array_Insert(int* values, int newValue){
-
+    *(value + size) = newValue;
+    size++;
 }
 void Array_Get(int* values, int index){
-
+     int value = *(values + index);
+     return value;
 }
 
 void Array_Print(int* values){
@@ -55,4 +57,5 @@ void Array_Print(int* values){
             printf(" ");
         }
     }
+    printf("\n");
 }
