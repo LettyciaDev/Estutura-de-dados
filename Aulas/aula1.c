@@ -8,6 +8,7 @@ void Array_Destroy(int* values);
 void Array_Insert(int* values,int newValue);
 int Array_Get(int* values, int index);
 void Array_Print(int* values);
+void Array_Resize();
 
 int capacity;
 int* values;
@@ -40,7 +41,7 @@ void Array_Insert(int* values, int newValue){
     if(size == capacity){
         Array_Resize();
     }
-    *(value + size) = newValue;
+    *(values + size) = newValue;
     size++;
 }
 void Array_Get(int* values, int index){
@@ -61,4 +62,17 @@ void Array_Print(int* values){
         }
     }
     printf("\n");
+}
+
+void Array_Resize() {
+    capacity *= factor; // Multiplica a capacidade pelo fator
+    int* newValues = (int*) malloc(sizeof(int) * capacity); // Novo array maior
+
+    // Copia os valores antigos para o novo array
+    for (int i = 0; i < size; i++) {
+        newValues[i] = values[i];
+    }
+
+    free(values); // Libera o antigo array
+    values = newValues; // Atualiza o ponteiro para o novo array
 }
