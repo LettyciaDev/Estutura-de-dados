@@ -37,6 +37,9 @@ void Array_Destroy(int* values){
     free(values);
 }
 void Array_Insert(int* values, int newValue){
+    if(size == capacity){
+        Array_Resize();
+    }
     *(value + size) = newValue;
     size++;
 }
