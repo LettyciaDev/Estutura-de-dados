@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef Struct arraylist{
+typedef struct arraylist{
     int capacity;
     int* values;
     int size;
@@ -10,7 +10,7 @@ typedef Struct arraylist{
 } ArrayList;
 
 
-int* Array_Create(int capacity);
+ArrayList* Array_Create(int capacity);
 void Array_Destroy(ArrayList * array);
 void Array_Insert(ArrayList * array, int newValue);
 int Array_Get(ArrayList * array, int index);
@@ -22,7 +22,7 @@ int main(){
     int capacity = 2;
     ArrayList* array = Array_Create(capacity);
     Array_Print(array);
-    for (int i = 0; i < 3; i++){
+    for (int i = 0; i < 8; i++){
         Array_Insert(array, i * 10);
         Array_Print(array);
     }
@@ -31,6 +31,7 @@ int main(){
     return 0;
 }
 
+// Cria a Struct ArrayList
 ArrayList* Array_Create(int capacity){
     ArrayList * array = (ArrayList *) malloc(sizeof(ArrayList));
     array->capacity = capacity;
@@ -51,7 +52,7 @@ void Array_Insert(ArrayList * array, int newValue){
     *(array->values + array->size) = newValue;
     array->size++;
 }
-void Array_Get(ArrayList * array, int index){
+int Array_Get(ArrayList * array, int index){
      int value = *(array->values + index);
      return value;
 }
@@ -73,7 +74,7 @@ void Array_Print(ArrayList* array){
 
 void Array_Resize(ArrayList * array){
     int newCapacity = array->capacity * array->factor; // Multiplica a capacidade pelo fator
-    int* newValues = (int*) malloc(sizeof(int) * capacity); // Novo array maior
+    int* newValues = (int*) malloc(sizeof(int) * array->capacity); // Novo array maior
 
     // Copia os valores antigos para o novo array
     for (int i = 0; i < array->size; i++) {
